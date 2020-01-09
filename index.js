@@ -42,30 +42,30 @@ app.post('/loginUser', (req,res) => {
 })
 
 app.post('/registerUser',(req,res) => {
-  const name = req.body.friendName
-  const code = req.body.friendCode
-  const password = req.body.password
+  const name = req.body.name
+  const password = req.body.password  
+  const code = req.body.code
   const location = req.body.location
   const giftPref1 = req.body.giftPref1
   const giftPref2 = req.body.giftPref2
 
-  console.log(userName)
-  console.log(userCode)
+  console.log(name)
+  console.log(code)
   console.log(location)
   console.log(giftPref1)
   console.log(giftPref2)
   
   //verify if user exists; if not bcrypt hash password
   const user = models.User.build({
-    user: name,
-    code: code,
+    username: name,
     password: password,
+    code: code,
     location: location,
     giftPref1: giftPref1,
     giftPref2: giftPref2
   })
   user.save().then(()=> { 
-    res.redirect('/login')
+    res.redirect('/')
   })
 })
 

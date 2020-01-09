@@ -3,15 +3,15 @@
     <form method="POST" action="/registerUser">
       <div class="six columns">
         <label>Username</label>
-          <input class="u-full-width" type="text" name="friendName" placeholder="Enter GAME username" value={{friendName}}>
+          <input class="u-full-width" type="text" name="name" placeholder="Enter GAME username" value={{name}}>
         </div>
       <div class="six columns">
         <label>Password</label>
-          <input class="u-full-width" type="text" name="password" placeholder="Enter password / last 4 of friend code" value={{password}}>
+          <input class="u-full-width" type="password" name="password" placeholder="Enter password / last 4 of friend code" value={{password}}>
         </div>
       <div class="six columns">
         <label>User code</label>
-          <input class="u-full-width" type="text" name="friendCode" placeholder="Enter YOUR friend code" value={{friendCode}}>
+          <input class="u-full-width" type="text" name="code" placeholder="Enter YOUR friend code" value={{code}}>
         </div>
       <div class="six columns">
         <label>Location</label>
@@ -19,7 +19,7 @@
         </div>
       <div class="six columns">
         <label>Gift Preference 1</label>
-          <select class="u-full-width" type="text" name="giftPref1" value={{}} id="">
+          <select class="u-full-width" type="text" name="giftPref1" value={{giftPref1}} id="">
             <option value="energy">Spell Energy</option>
             <option value="runestone">Runestones</option>
             <option value="ingredient">Ingredients</option>
@@ -28,7 +28,7 @@
         </div>
       <div class="six columns">
         <label>Gift Preference 2</label>
-          <select class="u-full-width" type="text" name="giftPref2" value={{}} id="">
+          <select class="u-full-width" type="text" name="giftPref2" value={{giftPref2}} id="">
             <option value="runestone">Runestones</option>
             <option value="ingredient">Ingredients</option>
             <option value="energy">Spell Energy</option>
