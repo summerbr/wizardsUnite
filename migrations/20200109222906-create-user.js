@@ -14,6 +14,18 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      code: {
+        type: Sequelize.INTEGER
+      },
+      location: {
+        type: Sequelize.STRING
+      },
+      giftPref1: {
+        type: Sequelize.STRING
+      },
+      giftPref2: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
