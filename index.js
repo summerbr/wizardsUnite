@@ -4,10 +4,12 @@ const models = require('./models')
 // require('dotenv').config()
 
 const app = express()
-
 app.use(express.urlencoded())
 
-app.engine('mustache',mustacheExpress())
+const path = require('path')
+const VIEWS_PATH = path.join(__dirname, '/views')
+
+app.engine('mustache',mustacheExpress(VIEWS_PATH + '/partials','.mustache'))
 app.set('views','./views')
 app.set('view engine','mustache')
 
@@ -16,7 +18,11 @@ app.get('/', (req,res) => {
 })
 
 app.get('/friend', (req,res) => {
-  res.render('test')
+  res.render('friend')
+})
+
+app.get('/friend/:friend', (req,res) => {
+  res.render('friend',)
 })
 
 app.post('/add-friend',(req,res) => {
