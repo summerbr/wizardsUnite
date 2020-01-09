@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row"><h1>Register</h1>
+    <form method="POST" action="/register">
+      <div class="six columns">
+        <label>Username</label>
+          <input class="u-full-width" type="text" name="friendName" placeholder="Enter game username" value={{friendName}}>
+        </div>
+      <div class="six columns">
+        <label>User code</label>
+          <input class="u-full-width" type="text" name="friendCode" placeholder="Enter your friend code" value={{friendCode}}>
+        </div>
+      <div class="six columns">
+        <label>Location</label>
+          <input class="u-full-width" type="text" name="location" placeholder="Enter your location" value={{location}}>
+        </div>
+      <div class="six columns">
+        <label>Select Gift Preference 1</label>
+          <select class="u-full-width" type="text" name="giftPref1" value={{}} id="">
+            <option value="energy">Spell Energy</option>
+            <option value="runestone">Runestones</option>
+            <option value="ingredient">Ingredients</option>
+            <option value="any">ANY-I'm not picky!</option>
+          </select>
+        </div>
+      <div class="six columns">
+        <label>Select Gift Preference 2</label>
+          <select class="u-full-width" type="text" name="giftPref2" value={{}} id="">
+            <option value="runestone">Runestones</option>
+            <option value="ingredient">Ingredients</option>
+            <option value="energy">Spell Energy</option>
+            <option value="any">Just Gimme stuff!</option>
+          </select>
+        </div>  
+        <button class="button button-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
