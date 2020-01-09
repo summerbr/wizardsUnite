@@ -1,13 +1,20 @@
 const express = require('express')
 const mustacheExpress = require('mustache-express')
-// const session = require('express-session')
+const session = require('express-session')
+const path = require('path')
 const models = require('./models')
-// const bcrypt = require('bcrypt')
-// require('dotenv').config()
 const app = express()
+const bcrypt = require('bcrypt')
+require('dotenv').config()
+
+// create routers to cleanup code later
+// const router = require('./routes/')
+// app.use(router paths) upon cleanup
+
+// PUBLIC folder for stylesheets /images
+app.use(express.static('public'))
 app.use(express.urlencoded())
 
-const path = require('path')
 const VIEWS_PATH = path.join(__dirname, '/views')
 
 app.engine('mustache',mustacheExpress(VIEWS_PATH + '/partials','.mustache'))
@@ -48,7 +55,7 @@ app.post('/registerUser',(req,res) => {
   console.log(giftPref1)
   console.log(giftPref2)
   
-  //verify if user exists; if not bcrypt has password
+  //verify if user exists; if not bcrypt hash password
   const user = models.User.build({
     user: name,
     code: code,
@@ -64,8 +71,8 @@ app.post('/registerUser',(req,res) => {
 
 app.get('/dashboard', (req,res) => {
   // display user friends
-  // option to add new friend
-  // search/filter friend
+  // option to add new friend by code / username
+  // search filter friend by giftPref / location
   // update gift preferences / location
   // logout
 })
@@ -87,5 +94,5 @@ app.post('/add-friend',(req,res) => {
 })
 
 app.listen(8080, () => {
-  console.log('SERVER is RUNNING...')
+  console.log('ACCIO Server...')
 })
