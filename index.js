@@ -1,8 +1,9 @@
 const express = require('express')
 const mustacheExpress = require('mustache-express')
+// const session = require('express-session')
 const models = require('./models')
+// const bcrypt = require('bcrypt')
 // require('dotenv').config()
-
 const app = express()
 app.use(express.urlencoded())
 
@@ -25,9 +26,18 @@ app.get('/friend/:friend', (req,res) => {
   res.render('friend',)
 })
 
-app.post('/register',(req,res) => {
-  const userName = req.body.friendName
-  const userCode = req.body.friendCode
+app.post('/loginUser', (req,res) => {
+  const user = req.body.userName
+  const password = req.body.password
+
+  // bcrypt compare to loginuser
+  // if successful, redirect to main account dashboard
+})
+
+app.post('/registerUser',(req,res) => {
+  const name = req.body.friendName
+  const code = req.body.friendCode
+  const password = req.body.password
   const location = req.body.location
   const giftPref1 = req.body.giftPref1
   const giftPref2 = req.body.giftPref2
@@ -38,13 +48,26 @@ app.post('/register',(req,res) => {
   console.log(giftPref1)
   console.log(giftPref2)
   
-  // const friend = models.Friend.build({
-  //   user: friendName,
-  //   code: friendCode
-  // })
-  // friend.save().then(()=> { 
-    res.redirect('/')
-  // })
+  //verify if user exists; if not bcrypt has password
+  const user = models.User.build({
+    user: name,
+    code: code,
+    password: password,
+    location: location,
+    giftPref1: giftPref1,
+    giftPref2: giftPref2
+  })
+  user.save().then(()=> { 
+    res.redirect('/login')
+  })
+})
+
+app.get('/dashboard', (req,res) => {
+  // display user friends
+  // option to add new friend
+  // search/filter friend
+  // update gift preferences / location
+  // logout
 })
 
 app.post('/add-friend',(req,res) => {

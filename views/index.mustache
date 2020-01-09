@@ -7,8 +7,18 @@
   {{! {{> header}} 
   <div class="container">
     <div class="row"><h1>YER a WIZARD HARRY</h1>
+      <form method="POST" action="/loginUser">
+        <div class="six columns">
+          <label>Username</label>
+            <input class="u-full-width" type="text" name="userName" placeholder="Enter GAME username" value={{userName}}>
+          </div>
+        <div class="six columns">
+          <label>Password</label>
+            <input class="u-full-width" type="text" name="password" placeholder="Enter password / last 4 of friend code" value={{password}}>
+          </div>
+        <button class="button button-primary">LOGIN</button>
+      </form>
     </div>
-    {{>register}}
   </div>
 </body>
 </html>

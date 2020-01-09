@@ -1,20 +1,24 @@
 <div class="container">
   <div class="row"><h1>Register</h1>
-    <form method="POST" action="/register">
+    <form method="POST" action="/registerUser">
       <div class="six columns">
         <label>Username</label>
-          <input class="u-full-width" type="text" name="friendName" placeholder="Enter game username" value={{friendName}}>
+          <input class="u-full-width" type="text" name="friendName" placeholder="Enter GAME username" value={{friendName}}>
+        </div>
+      <div class="six columns">
+        <label>Password</label>
+          <input class="u-full-width" type="text" name="password" placeholder="Enter password / last 4 of friend code" value={{password}}>
         </div>
       <div class="six columns">
         <label>User code</label>
-          <input class="u-full-width" type="text" name="friendCode" placeholder="Enter your friend code" value={{friendCode}}>
+          <input class="u-full-width" type="text" name="friendCode" placeholder="Enter YOUR friend code" value={{friendCode}}>
         </div>
       <div class="six columns">
         <label>Location</label>
           <input class="u-full-width" type="text" name="location" placeholder="Enter your location" value={{location}}>
         </div>
       <div class="six columns">
-        <label>Select Gift Preference 1</label>
+        <label>Gift Preference 1</label>
           <select class="u-full-width" type="text" name="giftPref1" value={{}} id="">
             <option value="energy">Spell Energy</option>
             <option value="runestone">Runestones</option>
@@ -23,7 +27,7 @@
           </select>
         </div>
       <div class="six columns">
-        <label>Select Gift Preference 2</label>
+        <label>Gift Preference 2</label>
           <select class="u-full-width" type="text" name="giftPref2" value={{}} id="">
             <option value="runestone">Runestones</option>
             <option value="ingredient">Ingredients</option>
