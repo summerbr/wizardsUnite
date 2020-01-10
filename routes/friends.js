@@ -2,19 +2,35 @@ const express = require('express')
 const router = express.Router()
 
 //friends/
-// router.get('/', (req,res) => {
-//   res.render('friends', {myFriends: myFriends} )
-// })
 
-// router.post('/remove-friend', (req,res)=> {
-//   let byeFelicia = parseInt(req.body.id)
+//add friend
+app.post('/add-friend',(req,res) => {
+  const friendName = req.body.friendName
+  const friendCode = req.body.friendCode
+
+  console.log(friendName)
+  console.log(friendCode)
   
-//   db.Post.destroy(
-//     {
-//       where: {id: byeFelicia}
-//     }
-//   ).then(removedFriend => console.log(removedFriend))
-//   res.redirect('/dashboard')
-// })
+  const friend = db.Friend.build({
+    userID: req.session.userID,
+    username: friendName,
+    code: friendCode
+  })
+  friend.save().then(()=> { 
+    res.redirect('/dashboard')
+  })
+})
+
+//remove friend
+router.post('/remove-friend', (req,res)=> {
+  let byeFelicia = parseInt(req.body.id)
+  
+  db.Friend.destroy(
+    {
+      where: {id: byeFelicia}
+    }
+  ).then(removedFriend => console.log(removedFriend))
+  res.redirect('/dashboard')
+})
 
 module.exports = router

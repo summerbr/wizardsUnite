@@ -9,15 +9,18 @@
   {{#friends}}
   <ul>
     <li>{{username}}</li>
+  
   <form method="POST" action="/remove-friend">
     <input type="hidden" name="id" value={{id}} />
     <button>Remove</button>
   </form>
+  
   </ul>
   {{/friends}}
 
   <a href="/friend">Add Friend</a>
-
+  <br>
+  <a class="button button-primary" href="/logout">Logout</a>
 </body>
 <hr>
 {{> footer}}

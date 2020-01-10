@@ -36,14 +36,6 @@ app.get('/register', (req,res) => {
   res.render('register')
 })
 
-app.get('/friend', (req,res) => {
-  res.render('friend')
-})
-
-app.get('/friend/:friend', (req,res) => {
-  res.render('friend',)
-})
-
 app.post('/loginUser', (req,res) => {
   db.User.findOne({
     where: {
@@ -59,8 +51,10 @@ app.post('/loginUser', (req,res) => {
           // if successful, redirect to main account dashboard
           if (result == true) {
             req.session.userID = user.id
+            req.session.name = user.username
+            
             console.log(req.session)
-            // console.log(req.session.userID)
+
             res.redirect('/dashboard');
           } else {
               console.log('password WRONG')
@@ -72,10 +66,17 @@ app.post('/loginUser', (req,res) => {
     })
 });
 
+// move to account route on cleanup
 app.get('/dashboard', (req,res) => {
+  // only available when logged in -- active session
+  // display user friends
   db.Friend.findAll().then((friends) => {
     res.render('dashboard', {friends: friends})
   })
+
+  // search filter friend by giftPref / location
+
+  // update gift preferences / location
 })
 
 app.post('/registerUser',(req,res) => {
@@ -112,13 +113,13 @@ app.post('/registerUser',(req,res) => {
   })
 })
 
-app.get('/dashboard', (req,res) => {
-  // only available when logged in -- active session
-  // display user friends
-  // option to add new friend by code / username
-  // search filter friend by giftPref / location
-  // update gift preferences / location
-  // logout
+// move to friend route on cleanup
+app.get('/friend', (req,res) => {
+  res.render('friend')
+})
+
+app.get('/friend/:id', (req,res) => {
+  res.render('friend')
 })
 
 app.post('/add-friend',(req,res) => {
@@ -149,6 +150,11 @@ app.post('/remove-friend', (req,res)=> {
   res.redirect('/dashboard')
 })
 
+// move to account route on cleanup
+app.get('/logout', (req,res) => {
+  req.session.destroy
+  res.redirect('/')
+})
 
 app.listen(8080, () => {
   console.log('ACCIO Server...')
