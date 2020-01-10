@@ -58,9 +58,9 @@ app.post('/loginUser', (req,res) => {
         bcrypt.compare(req.body.password, user.password, (err, result) => {
           // if successful, redirect to main account dashboard
           if (result == true) {
+            req.session.userID = user.id
             console.log(req.session)
-            req.session.user = user
-            // console.log(req.session.user)
+            // console.log(req.session.userID)
             res.redirect('/dashboard');
           } else {
               console.log('password WRONG')
@@ -127,6 +127,7 @@ app.post('/add-friend',(req,res) => {
   console.log(friendCode)
   
   const friend = db.Friend.build({
+    userID: req.session.userID,
     username: friendName,
     code: friendCode
   })
