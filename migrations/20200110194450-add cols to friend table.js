@@ -7,7 +7,6 @@ module.exports = {
         'Friends',
         'username',
         {
-          allowNull: false,
           type: Sequelize.STRING
         }
       ),
@@ -15,7 +14,6 @@ module.exports = {
         'Friends',
         'code',
         {
-          allowNull: false,
           type: Sequelize.INTEGER
         }
       ),
@@ -23,8 +21,8 @@ module.exports = {
   },
   down: (queryInterface, Sequelize) => {
     return Promise.all([
-      removeColumn('Friends', 'username'), 
-      removeColumn('Friends', 'code'), 
+      queryInterface.removeColumn('Friends', 'username'), 
+      queryInterface.removeColumn('Friends', 'code'), 
     ])
   }
 };

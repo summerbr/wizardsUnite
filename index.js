@@ -126,8 +126,8 @@ app.post('/add-friend',(req,res) => {
   console.log(friendName)
   console.log(friendCode)
   
-  const friend = models.Friend.build({
-    user: friendName,
+  const friend = db.Friend.build({
+    username: friendName,
     code: friendCode
   })
   friend.save().then(()=> { 
