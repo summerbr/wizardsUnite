@@ -1,0 +1,50 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row"><h1>Register</h1>
+      <form method="POST" action="/registerUser">
+        <div class="six columns">
+          <label>Username</label>
+            <input class="u-full-width" type="text" name="name" placeholder="Enter GAME username" value={{name}}>
+          </div>
+        <div class="six columns">
+          <label>Password</label>
+            <input class="u-full-width" type="password" name="password" placeholder="Enter password" value={{password}}>
+          </div>
+        <div class="six columns">
+          <label>User code</label>
+            <input class="u-full-width" type="text" name="code" placeholder="Enter YOUR friend code" value={{code}}>
+          </div>
+        <div class="six columns">
+          <label>Location</label>
+            <input class="u-full-width" type="text" name="location" placeholder="Enter your location" value={{location}}>
+          </div>
+        <div class="six columns">
+          <label>Gift Preference 1</label>
+            <select class="u-full-width" type="text" name="giftPref1" value={{giftPref1}} id="">
+              <option value="energy">Spell Energy</option>
+              <option value="runestone">Runestones</option>
+              <option value="ingredient">Ingredients</option>
+              <option value="any">ANY-I'm not picky!</option>
+            </select>
+          </div>
+        <div class="six columns">
+          <label>Gift Preference 2</label>
+            <select class="u-full-width" type="text" name="giftPref2" value={{giftPref2}} id="">
+              <option value="runestone">Runestones</option>
+              <option value="ingredient">Ingredients</option>
+              <option value="energy">Spell Energy</option>
+              <option value="any">Just Gimme stuff!</option>
+            </select>
+          </div>  
+          <button class="button button-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+{{> footer}}
+</html>

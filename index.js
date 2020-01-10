@@ -6,11 +6,8 @@ const db = require('./models')
 const app = express()
 const bcrypt = require('bcrypt')
 const saltRounds = 10
-require('dotenv').config()
-
-// create routers to cleanup code later
 // const router = require('./routes/')
-// app.use(router paths) upon cleanup
+require('dotenv').config()
 
 // PUBLIC folder for stylesheets /images
 app.use(express.static('public'))
@@ -28,8 +25,15 @@ app.use(session({
     saveUninitialized: true
 }))
 
+// create routers to cleanup code later
+// app.use(router paths) 
+
 app.get('/', (req,res) => {
   res.render('index')
+})
+
+app.get('/register', (req,res) => {
+  res.render('register')
 })
 
 app.get('/friend', (req,res) => {
@@ -47,16 +51,19 @@ app.post('/loginUser', (req,res) => {
     }
   }).then((user) => {
       if (!user) {
-        res.redirect('/')
+        // msg doesn't work -- update later
+        res.redirect('/', {status:500, message: 'user already exists'})
       } else {
         // bcrypt compare to loginuser
         bcrypt.compare(req.body.password, user.password, (err, result) => {
           // if successful, redirect to main account dashboard
           if (result == true) {
-            console.log(user)
+            console.log(req.session)
+            req.session.user = user
+            // console.log(req.session.user)
             res.redirect('/dashboard');
           } else {
-              console.log('why here')
+              console.log('password WRONG')
               // res.send('Try again');
               res.redirect('/')
           }
@@ -84,7 +91,7 @@ app.post('/registerUser',(req,res) => {
     }
   }).then((user) => {
       if (user) {
-        res.render("login", {status:500, message: 'email already exists'})
+        res.redirect('/', {status:500, message: 'user already exists'})
       } else {
         bcrypt.hash(password, saltRounds, function(err,hash) {
           const user = db.User.build({
@@ -104,6 +111,7 @@ app.post('/registerUser',(req,res) => {
 })
 
 app.get('/dashboard', (req,res) => {
+  // only available when logged in -- active session
   // display user friends
   // option to add new friend by code / username
   // search filter friend by giftPref / location
