@@ -2,9 +2,10 @@ const express = require('express')
 const mustacheExpress = require('mustache-express')
 const session = require('express-session')
 const path = require('path')
-const models = require('./models')
+const db = require('./models')
 const app = express()
 const bcrypt = require('bcrypt')
+const saltRounds = 10
 require('dotenv').config()
 
 // create routers to cleanup code later
@@ -21,6 +22,12 @@ app.engine('mustache',mustacheExpress(VIEWS_PATH + '/partials','.mustache'))
 app.set('views','./views')
 app.set('view engine','mustache')
 
+app.use(session({
+    secret:"Shhh! stupid",
+    resave: false,
+    saveUninitialized: true
+}))
+
 app.get('/', (req,res) => {
   res.render('index')
 })
@@ -34,11 +41,32 @@ app.get('/friend/:friend', (req,res) => {
 })
 
 app.post('/loginUser', (req,res) => {
-  const user = req.body.userName
-  const password = req.body.password
+  db.User.findOne({
+    where: {
+      username: req.body.userName
+    }
+  }).then((user) => {
+      if (!user) {
+        res.redirect('/')
+      } else {
+        // bcrypt compare to loginuser
+        bcrypt.compare(req.body.password, user.password, (err, result) => {
+          // if successful, redirect to main account dashboard
+          if (result == true) {
+            console.log(user)
+            res.redirect('/dashboard');
+          } else {
+              console.log('why here')
+              // res.send('Try again');
+              res.redirect('/')
+          }
+        })
+      }
+    })
+});
 
-  // bcrypt compare to loginuser
-  // if successful, redirect to main account dashboard
+app.get('/dashboard', (req,res) => {
+  res.render('dashboard')
 })
 
 app.post('/registerUser',(req,res) => {
@@ -49,23 +77,29 @@ app.post('/registerUser',(req,res) => {
   const giftPref1 = req.body.giftPref1
   const giftPref2 = req.body.giftPref2
 
-  console.log(name)
-  console.log(code)
-  console.log(location)
-  console.log(giftPref1)
-  console.log(giftPref2)
-  
   //verify if user exists; if not bcrypt hash password
-  const user = models.User.build({
-    username: name,
-    password: password,
-    code: code,
-    location: location,
-    giftPref1: giftPref1,
-    giftPref2: giftPref2
-  })
-  user.save().then(()=> { 
-    res.redirect('/')
+  db.User.findOne({
+    where: {
+      username: name
+    }
+  }).then((user) => {
+      if (user) {
+        res.render("login", {status:500, message: 'email already exists'})
+      } else {
+        bcrypt.hash(password, saltRounds, function(err,hash) {
+          const user = db.User.build({
+            username: name,
+            password: hash,
+            code: code,
+            location: location,
+            giftPref1: giftPref1,
+            giftPref2: giftPref2
+          })
+          user.save().then(()=> { 
+            res.redirect('/')
+          })
+        })
+      }
   })
 })
 
@@ -95,4 +129,4 @@ app.post('/add-friend',(req,res) => {
 
 app.listen(8080, () => {
   console.log('ACCIO Server...')
-})
+});
