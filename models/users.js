@@ -9,7 +9,13 @@ module.exports = (sequelize, DataTypes) => {
     giftPref2: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    models.User.hasMany(
+      models.Friend,
+      {
+        as: 'friendID',
+        foreignKey: 'id'
+      }
+    )
   };
   return User;
 };
