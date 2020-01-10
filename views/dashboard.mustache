@@ -5,11 +5,20 @@
 
 <body>
   <h1>YER a WIZARD</h1>
-  <a href="/friend">Add Friend</p>
-  <p>Search for Friends</p>
 
+  {{#friends}}
+  <ul>
+    <li>{{username}}</li>
+  <form method="POST" action="/remove-friend">
+    <input type="hidden" name="id" value={{id}} />
+    <button>Remove</button>
+  </form>
+  </ul>
+  {{/friends}}
 
+  <a href="/friend">Add Friend</a>
 
 </body>
+<hr>
 {{> footer}}
 </html>

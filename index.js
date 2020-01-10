@@ -73,7 +73,9 @@ app.post('/loginUser', (req,res) => {
 });
 
 app.get('/dashboard', (req,res) => {
-  res.render('dashboard')
+  db.Friend.findAll().then((friends) => {
+    res.render('dashboard', {friends: friends})
+  })
 })
 
 app.post('/registerUser',(req,res) => {
@@ -132,9 +134,21 @@ app.post('/add-friend',(req,res) => {
     code: friendCode
   })
   friend.save().then(()=> { 
-    res.redirect('/')
+    res.redirect('/dashboard')
   })
 })
+
+app.post('/remove-friend', (req,res)=> {
+  let byeFelicia = parseInt(req.body.id)
+  
+  db.Friend.destroy(
+    {
+      where: {id: byeFelicia}
+    }
+  ).then(removedFriend => console.log(removedFriend))
+  res.redirect('/dashboard')
+})
+
 
 app.listen(8080, () => {
   console.log('ACCIO Server...')

@@ -6,25 +6,15 @@ const router = express.Router()
 //   res.render('friends', {myFriends: myFriends} )
 // })
 
-// router.post('/addFriend', (req,res) => {
-//   let trip = {
-//     'city': req.body.myCity,
-//     'departureDate': req.body.myDeparture,
-//     'returnDate': req.body.myReturn,
-//     'imgURL': req.body.myImg
-//   }
-//   myTrips.push(trip)
-//   res.redirect('/trips')
-// })
-
-// router.post('/removeFriend', (req,res) => {
-//   let cityToRemove = req.body.cityToRemove
-//   myTrips = myTrips.filter((trip) => {
-//     if(trip.city != cityToRemove) {
-//       return trip
+// router.post('/remove-friend', (req,res)=> {
+//   let byeFelicia = parseInt(req.body.id)
+  
+//   db.Post.destroy(
+//     {
+//       where: {id: byeFelicia}
 //     }
-//   })
-//     res.redirect('/trips')
+//   ).then(removedFriend => console.log(removedFriend))
+//   res.redirect('/dashboard')
 // })
 
 module.exports = router
