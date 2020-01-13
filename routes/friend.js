@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
+router.use(express.static('public'))
+
 router.get('/', (req,res) => {
   res.render('friend')
 })
@@ -13,9 +15,6 @@ router.get('/:id', (req,res) => {
 router.post('/add-friend',(req,res) => {
   const friendName = req.body.friendName
   const friendCode = req.body.friendCode
-
-  console.log(friendName)
-  console.log(friendCode)
   
   const friend = db.Friend.build({
     userID: req.session.userID,
@@ -40,6 +39,7 @@ router.post('/remove-friend', (req,res)=> {
 })
 
 router.post('/search', (req,res) => {
+  //by username
   db.User.findOne({
     where: {
       username: name
@@ -47,6 +47,9 @@ router.post('/search', (req,res) => {
   }).then((friend) => {
     
   })
+  //by location
+
+  //by giftPref
 })
 
 module.exports = router

@@ -1,6 +1,7 @@
 <html>
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -12,13 +13,13 @@
   
   <form method="POST" action="/friend/remove-friend">
     <input type="hidden" name="id" value={{id}} />
-    <button>Remove</button>
+    <button class="button">Remove</button>
   </form>
   
   </ul>
-  {{/friends}}
-
-  <a href="/friend">Add Friend</a>
+  {{/friends}} 
+<hr>
+  {{> friend}}
   <br>
   <a class="button button-primary" href="/user/logout">Logout</a>
 </body>

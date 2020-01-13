@@ -3,13 +3,14 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
+router.use(express.static('public'))
+
 router.get('/dashboard', (req,res) => {
   // only available when logged in -- active session
   // display user friends
   db.Friend.findAll().then((friends) => {
     res.render('dashboard', {friends: friends})
   })
-  // update gift preferences / location
 })
 
 router.post('/register',(req,res) => {
@@ -74,24 +75,24 @@ router.post('/login', (req,res) => {
     })
 });
 
-// update account (fix!)
-// app.post('/update-post', (req,res)=> {
-//   const id = parseInt(req.body.id)
-//   const title = req.body.title
-//   const body = req.body.body
-//   const category = req.body.category
+// update account / gift preferences / location
+router.post('/update', (req,res)=> {
+  const id = parseInt(req.body.id)
+  const location = req.body.location
+  const giftPref1 = req.body.giftPref1
+  const giftPref2 = req.body.giftPref2
 
-//   models.Post.update({
-//     title: title,
-//     body: body,
-//     category: category
-//   },
-//     {
-//       where: {id: id} 
-//     }
-//   ).then(()=> {res.redirect('/')
-//   })
-// })
+  models.User.update({
+    location: location,
+    giftPref1: giftPref1,
+    giftPref2: giftPref2
+  },
+    {
+      where: {id: id} 
+    }
+  ).then(()=> {res.redirect('/user/dashboard')
+  })
+})
 
 router.get('/logout', (req,res) => {
   req.session.destroy
