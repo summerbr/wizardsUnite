@@ -5,7 +5,7 @@
 <body>
   <div class="container">
     <div class="row"><h1>Register</h1>
-      <form method="POST" action="/registerUser">
+      <form method="POST" action="/user/register">
         <div class="six columns">
           <label>Username</label>
             <input class="u-full-width" type="text" name="name" placeholder="Enter GAME username" value={{name}}>
@@ -15,7 +15,7 @@
             <input class="u-full-width" type="password" name="password" placeholder="Enter password" value={{password}}>
           </div>
         <div class="six columns">
-          <label>User code</label>
+          <label>User code <i>(NO SPACES)</i></label>
             <input class="u-full-width" type="text" name="code" placeholder="Enter YOUR friend code" value={{code}}>
           </div>
         <div class="six columns">

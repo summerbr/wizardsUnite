@@ -1,10 +1,16 @@
 const express = require('express')
 const router = express.Router()
 
-//friends/
+router.get('/', (req,res) => {
+  res.render('friend')
+})
+
+router.get('/:id', (req,res) => {
+  res.render('friend')
+})
 
 //add friend
-app.post('/add-friend',(req,res) => {
+router.post('/add-friend',(req,res) => {
   const friendName = req.body.friendName
   const friendCode = req.body.friendCode
 
@@ -17,7 +23,7 @@ app.post('/add-friend',(req,res) => {
     code: friendCode
   })
   friend.save().then(()=> { 
-    res.redirect('/dashboard')
+    res.redirect('/user/dashboard')
   })
 })
 
@@ -30,7 +36,17 @@ router.post('/remove-friend', (req,res)=> {
       where: {id: byeFelicia}
     }
   ).then(removedFriend => console.log(removedFriend))
-  res.redirect('/dashboard')
+  res.redirect('/user/dashboard')
+})
+
+router.post('/search', (req,res) => {
+  db.User.findOne({
+    where: {
+      username: name
+    }
+  }).then((friend) => {
+    
+  })
 })
 
 module.exports = router

@@ -10,7 +10,7 @@
   <ul>
     <li>{{username}}</li>
   
-  <form method="POST" action="/remove-friend">
+  <form method="POST" action="/friend/remove-friend">
     <input type="hidden" name="id" value={{id}} />
     <button>Remove</button>
   </form>
@@ -20,7 +20,7 @@
 
   <a href="/friend">Add Friend</a>
   <br>
-  <a class="button button-primary" href="/logout">Logout</a>
+  <a class="button button-primary" href="/user/logout">Logout</a>
 </body>
 <hr>
 {{> footer}}
