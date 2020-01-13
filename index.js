@@ -54,11 +54,9 @@ app.post('/loginUser', (req,res) => {
             req.session.name = user.username
             
             console.log(req.session)
-
             res.redirect('/dashboard');
           } else {
-              console.log('password WRONG')
-              // res.send('Try again');
+              console.log('WRONG password')
               res.redirect('/')
           }
         })
@@ -75,7 +73,14 @@ app.get('/dashboard', (req,res) => {
   })
 
   // search filter friend by giftPref / location
-
+  db.User.findOne({
+    where: {
+      username: name
+    }
+  }).then((friend) => {
+    
+  })
+      
   // update gift preferences / location
 })
 
@@ -113,7 +118,7 @@ app.post('/registerUser',(req,res) => {
   })
 })
 
-// move to friend route on cleanup
+// move all below to friend route on cleanup
 app.get('/friend', (req,res) => {
   res.render('friend')
 })
