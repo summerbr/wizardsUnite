@@ -1,13 +1,21 @@
-h1, h2 {
-  text-align: center;
-}
-
 body {
   background-color: black;
   color: white;
+  font-family: 'Lobster', cursive;
 }
+
+h1, h2 {
+  text-align: center;
+  font-family: 'Seymour One', sans-serif;
+}
+
 
 .button {
   background-color: darkmagenta;
   color: white;
+}
+
+hr {
+  width: 100%;
+  border-top: 10px dotted green;
 }

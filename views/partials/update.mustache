@@ -1,28 +1,8 @@
-<html>
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
-  <link href="https://fonts.googleapis.com/css?family=Lobster|Seymour+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  {{> header }}
-    <h1>Register</h1>
-      <form method="POST" action="/user/register">
-        <div class="six columns">
-          <label>Username</label>
-            <input class="u-full-width" type="text" name="name" placeholder="Enter GAME username" value={{name}}>
-          </div>
-        <div class="six columns">
-          <label>Password</label>
-            <input class="u-full-width" type="password" name="password" placeholder="Enter password" value={{password}}>
-          </div>
-        <div class="six columns">
-          <label>User code <i>(NO SPACES)</i></label>
-            <input class="u-full-width" type="text" name="code" placeholder="Enter YOUR friend code" value={{code}}>
-          </div>
+    <div class="row"><h1>Register</h1>
+      <form method="POST" action="/user/update">
         <div class="six columns">
           <label>House</label>
-            <input class="u-full-width" type="text" name="house" placeholder="Enter YOUR House" value={{house}}>
+            <input class="u-full-width" type="text" name="house" placeholder="Enter your Hogwarts House" value={{house}}>
           </div>
         <div class="six columns">
           <label>Location</label>
@@ -49,8 +29,3 @@
           <button class="button button-primary">Submit</button>
         </div>
       </form>
-    </div>
-  </div>
-</body>
-{{> footer}}
-</html>

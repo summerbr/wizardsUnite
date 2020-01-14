@@ -79,11 +79,13 @@ router.post('/login', (req,res) => {
 router.post('/update', (req,res)=> {
   const id = parseInt(req.body.id)
   const location = req.body.location
+  // const house = req.body.house
   const giftPref1 = req.body.giftPref1
   const giftPref2 = req.body.giftPref2
 
   models.User.update({
     location: location,
+    // house: house,
     giftPref1: giftPref1,
     giftPref2: giftPref2
   },

@@ -1,28 +1,27 @@
 <html>
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster|Seymour+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  {{! {{> header}} 
-  <div class="container">
-    <div class="row">
-      <h1>WIZARDS UNITE</h1>
-      <h2>Friend Finder</h2>
-  <hr>
+  {{> header }}
       <form method="POST" action="/user/login">
-        <div class="six columns">
+        <div class="twelve columns">
           <label>Username</label>
             <input class="u-full-width" type="text" name="userName" placeholder="Enter GAME username" value={{userName}}>
           </div>
-        <div class="six columns">
+        <div class="twelve columns">
           <label>Password</label>
             <input class="u-full-width" type="password" name="password" placeholder="Enter password" value={{password}}>
           </div>
-        <button class="button button-primary">LOGIN</button>
+        </div>
+          <button class="button button-primary">LOGIN</button>
+          <a class="button u-pull-right" href="/register">Register</a>
+        </div>
       </form>
-      <a class="button u-full-width" href="/register">Register</a>
     </div>
   </div>
 </body>

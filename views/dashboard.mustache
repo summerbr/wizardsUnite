@@ -1,25 +1,39 @@
 <html>
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster|Seymour+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <h1>YER a WIZARD</h1>
+  {{> header}}
+  <h2>YER a WIZARD 
+  {{# users }} {{ session.username }} {{/ users }}
+  </h2>
+  <h3>Display user info</h3>
+  <form method="POST" action="/user/update">
+    <input type="hidden" name="id" value={{id}} />
+    <button class="button">Update</button>
+  </form>
 
+  <h3>Fellow Wizards</h3>
   {{#friends}}
   <ul>
     <li>{{username}}</li>
-  
-  <form method="POST" action="/friend/remove-friend">
-    <input type="hidden" name="id" value={{id}} />
-    <button class="button">Remove</button>
-  </form>
-  
+
+    <form method="POST" action="/friend/remove-friend">
+      <input type="hidden" name="id" value={{id}} />
+      <button class="button">Remove</button>
+    </form>
   </ul>
   {{/friends}} 
-<hr>
-  {{> friend}}
+
+  <form method="POST" action="/friend/search">
+    <input type="text" name="search" value={{}}>
+    <button class="button">Search</button>
+
+  {{! //Add friend}}
+  {{! {{> friend}} 
   <br>
   <a class="button button-primary" href="/user/logout">Logout</a>
 </body>

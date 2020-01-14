@@ -38,15 +38,20 @@ router.post('/remove-friend', (req,res)=> {
   res.redirect('/user/dashboard')
 })
 
+  //show all registered users?
+  // db.User.findAll().then((all) => {
+  //   res.render('dashboard', {all:all}
+  //   )
+  // })
+
 router.post('/search', (req,res) => {
   //by username
-  db.User.findOne({
-    where: {
-      username: name
+  const userSearch = req.body.search
+  db.User.findOne(
+    {
+      where: {username: userSearch}
     }
-  }).then((friend) => {
-    
-  })
+  ).then(friend => console.log(friend))
   //by location
 
   //by giftPref
