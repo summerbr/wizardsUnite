@@ -10,7 +10,6 @@ router.get('/dashboard', (req,res) => {
   // display user friends
   const username = req.session.userName
   
-  //displays all friends in database not ones linked to user
   db.Friend.findAll({where:
     {
       userID: req.session.userID
