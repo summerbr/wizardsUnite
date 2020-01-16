@@ -8,7 +8,14 @@ router.use(express.static('public'))
 router.get('/dashboard', (req,res) => {
   // only available when logged in -- active session
   // display user friends
-  db.Friend.findAll().then((friends) => {
+  const username = req.session.userName
+  
+  //displays all friends in database not ones linked to user
+  db.Friend.findAll({where:
+    {
+      userID: req.session.userID
+    }
+  }).then((friends) => {
     res.render('dashboard', {friends: friends})
   })
 })
@@ -18,6 +25,8 @@ router.post('/register',(req,res) => {
   const password = req.body.password  
   const code = req.body.code
   const location = req.body.location
+  const house = req.body.house
+  const profession = req.body.profession
   const giftPref1 = req.body.giftPref1
   const giftPref2 = req.body.giftPref2
 
@@ -36,6 +45,8 @@ router.post('/register',(req,res) => {
             password: hash,
             code: code,
             location: location,
+            house: house,
+            profession: profession,
             giftPref1: giftPref1,
             giftPref2: giftPref2
           })
@@ -79,13 +90,15 @@ router.post('/login', (req,res) => {
 router.post('/update', (req,res)=> {
   const id = parseInt(req.body.id)
   const location = req.body.location
-  // const house = req.body.house
+  const house = req.body.house
+  const profession = req.body.profession
   const giftPref1 = req.body.giftPref1
   const giftPref2 = req.body.giftPref2
 
-  models.User.update({
+  db.User.update({
     location: location,
-    // house: house,
+    house: house,
+    profession: profession,
     giftPref1: giftPref1,
     giftPref2: giftPref2
   },
