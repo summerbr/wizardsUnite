@@ -5,6 +5,8 @@ const saltRounds = 10
 
 router.use(express.static('public'))
 
+//error when newly registered user is directed to dashboard
+//change to route to login page
 router.get('/dashboard', (req,res) => {
   // only available when logged in -- active session
   // display user friends
@@ -50,7 +52,7 @@ router.post('/register',(req,res) => {
             giftPref2: giftPref2
           })
           user.save().then(()=> { 
-            res.redirect('/user/dashboard')
+            res.redirect('/user/login')
           })
         })
       }
