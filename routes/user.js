@@ -5,8 +5,6 @@ const saltRounds = 10
 
 router.use(express.static('public'))
 
-//error when newly registered user is directed to dashboard
-//change to route to login page
 router.get('/dashboard', (req,res) => {
   // only available when logged in -- active session
   // display user friends
@@ -77,7 +75,7 @@ router.post('/login', (req,res) => {
             req.session.name = user.username
             
             console.log(req.session)
-            res.redirect('/user/dashboard');
+            res.render('./dashboard', {username: req.session.name});
           } else {
               console.log('WRONG password')
               res.redirect('/')

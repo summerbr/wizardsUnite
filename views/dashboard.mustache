@@ -8,8 +8,7 @@
 
 <body>
   {{> header}}
-  <h2>YER a WIZARD 
-  {{# users }} {{ session.username }} {{/ users }}
+  <h2>YER a WIZARD {{username}} 
   </h2>
   <h3>Display user info</h3>
   <form method="POST" action="/user/update">
@@ -18,10 +17,10 @@
   </form>
 
   <h3>Fellow Wizards</h3>
+
   {{#friends}}
   <ul>
     <li>{{username}}</li>
-
     <form method="POST" action="/friend/remove-friend">
       <input type="hidden" name="id" value={{id}} />
       <button class="button">Remove</button>
@@ -29,12 +28,17 @@
   </ul>
   {{/friends}} 
 
-  <form method="POST" action="/friend/search">
-    <input type="text" name="search" value={{}}>
-    <button class="button">Search</button>
-
+  {{! <form method="POST" action="/friend/search">
+    <input type="text" name="search" value={{>
+    <button class="button">Search</button>  }}
+  {{#users}}
+    <ul> 
+      <li>{{username}}<li>
+    </ul>
+  {{/users}}
   {{! //Add friend}}
-  {{! {{> friend}} 
+  {{! {{> friend}}  
+
   <br>
   <a class="button button-primary" href="/user/logout">Logout</a>
 </body>
