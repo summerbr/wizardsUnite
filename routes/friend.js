@@ -16,10 +16,6 @@ router.post('/add-friend',(req,res) => {
   // const friendName = req.body.friendName
   // const friendCode = req.body.friendCode
   
-  db.User.findAll().then((all) => {
-    res.render('dashboard', {all:all} 
-    )
-
   // const friend = db.Friend.build({
   //   userID: req.session.userID,
   //   username: friendName,
@@ -28,6 +24,10 @@ router.post('/add-friend',(req,res) => {
   // friend.save().then(()=> { 
   //   res.redirect('/user/dashboard')
   // })
+
+  db.User.findAll().then((all) => {
+    res.render('dashboard', {all: all} 
+    )
   })
 })
 
@@ -50,6 +50,7 @@ router.post('/remove-friend', (req,res)=> {
   //   )
   // })
 
+//not working yet
 router.post('/search', (req,res) => {
   //by username
   const userSearch = req.body.search

@@ -15,7 +15,7 @@ router.get('/dashboard', (req,res) => {
       userID: req.session.userID
     }
   }).then((friends) => {
-    res.render('dashboard', {friends: friends})
+    res.render('dashboard', {username: req.session.name, friends: friends})
   })
 })
 
@@ -75,7 +75,8 @@ router.post('/login', (req,res) => {
             req.session.name = user.username
             
             console.log(req.session)
-            res.render('./dashboard', {username: req.session.name});
+            // res.render('./dashboard', {username: req.session.name});
+            res.redirect('./dashboard')
           } else {
               console.log('WRONG password')
               res.redirect('/')
@@ -104,7 +105,7 @@ router.post('/update', (req,res)=> {
     {
       where: {id: id} 
     }
-  ).then(()=> {res.redirect('/user/dashboard')
+  ).then(()=> {res.redirect('./dashboard')
   })
 })
 
