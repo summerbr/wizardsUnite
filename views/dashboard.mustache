@@ -16,7 +16,6 @@
   </form>
 
   <h3>Fellow Wizards</h3>
-
   {{#friends}}
   <ul>
     <li>{{username}}</li>
@@ -27,16 +26,9 @@
   </ul>
   {{/friends}} 
 
-  {{! <form method="POST" action="/friend/search">
-    <input type="text" name="search" value={{>
-    <button class="button">Search</button>  }}
-  {{#users}}
-    <ul> 
-      <li>{{username}}<li>
-    </ul>
-  {{/users}}
-  {{! //Add friend}}
-  {{! {{> friend}}  
+  <a href="/friend">
+    <h3>Find Friends</h3>
+  </a>
 
   <br>
   <a class="button button-primary" href="/user/logout">Logout</a>

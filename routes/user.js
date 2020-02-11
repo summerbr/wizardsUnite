@@ -75,7 +75,6 @@ router.post('/login', (req,res) => {
             req.session.name = user.username
             
             console.log(req.session)
-            // res.render('./dashboard', {username: req.session.name});
             res.redirect('./dashboard')
           } else {
               console.log('WRONG password')

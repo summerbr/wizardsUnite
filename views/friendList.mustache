@@ -1,0 +1,32 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster|Seymour+One&display=swap" rel="stylesheet">
+  {{! <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"> }}
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  {{> header}}
+<div class="row"><h2>Add Friend</h2>
+  <div class="ten columns">
+{{#all}}
+  <ul>
+    <li>{{username}}
+      <b>House:</b>{{house}} 
+      <b>Profession:</b>{{profession}} 
+      <b>Location:</b> {{location}}
+      <p></p>
+      <b>Gift Preferences:</b>
+      1: {{giftPref1}} 2: {{giftPref2}} 
+    </li>
+      <form method="POST" action="/friend/add-friend">
+        <input type="hidden" name="id" value={{id}} />
+      <button class="button button-primary">ADD</button>
+  </ul>
+{{/all}}
+  </div>
+</div>
+</body>
+{{> footer}}
+</html>

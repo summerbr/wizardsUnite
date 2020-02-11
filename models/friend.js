@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     userID: DataTypes.INTEGER
   }, {});
   Friend.associate = function(models) {
-    // associations can be defined here
+    // associations here
   };
   return Friend;
 };

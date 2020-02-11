@@ -9,7 +9,6 @@ h1, h2 {
   font-family: 'Seymour One', sans-serif;
 }
 
-
 .button {
   background-color: darkmagenta;
   color: white;
@@ -19,3 +18,17 @@ hr {
   width: 100%;
   border-top: 10px dotted green;
 }
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  color: black;
+  padding: 5px;
+  background-color: lightgrey;
+  border: 2px solid gray;
+  border-style: inset; 
+}
+
+/* change theme based on house */

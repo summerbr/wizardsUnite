@@ -3,6 +3,7 @@ const app = express()
 require('dotenv').config()
 
 global.db = require('./models')
+global.userList = []
 
 const path = require('path')
 const mustacheExpress = require('mustache-express')
