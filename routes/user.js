@@ -10,11 +10,20 @@ router.get('/dashboard', (req,res) => {
   // display user friends
   const username = req.session.userName
   
-  db.Friend.findAll({where:
+  db.Friend.findAll(
     {
-      userID: req.session.userID
+      include: [
+        {
+          model: db.User, 
+          as: 'user'
+        }
+      ], 
+      where: {
+        userID: req.session.userID
+      }
     }
-  }).then((friends) => {
+  ).then((friends) => {
+    friends.forEach(f => console.log(f.user))
     res.render('dashboard', {username: req.session.name, friends: friends})
   })
 })
@@ -86,7 +95,7 @@ router.post('/login', (req,res) => {
 });
 
 // update account / gift preferences / location
-router.post('/update', (req,res)=> {
+router.put('/update', (req,res)=> {
   const id = parseInt(req.body.id)
   const location = req.body.location
   const house = req.body.house
@@ -109,6 +118,7 @@ router.post('/update', (req,res)=> {
 })
 
 router.get('/logout', (req,res) => {
+  console.log('byeeeeeeee')
   req.session.destroy
   res.redirect('/')
 })

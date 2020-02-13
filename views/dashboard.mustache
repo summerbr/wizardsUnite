@@ -18,7 +18,7 @@
   <h3>Fellow Wizards</h3>
   {{#friends}}
   <ul>
-    <li>{{username}}</li>
+    <li>{{user.username}}</li>
     <form method="POST" action="/friend/remove-friend">
       <input type="hidden" name="id" value={{id}} />
       <button class="button">Remove</button>

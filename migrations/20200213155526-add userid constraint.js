@@ -29,6 +29,7 @@ module.exports = {
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
-      })
+      }
+    )
   }
 };

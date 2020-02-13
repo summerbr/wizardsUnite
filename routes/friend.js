@@ -9,21 +9,31 @@ router.get('/', (req,res) => {
     res.render('friendList', {all: all}))
 })
 
-router.get('/:id', (req,res) => {
-  res.render('friend')
-})
-
-//Add friend from populated list
+//Add friend from registered users table
 router.post('/add-friend',(req,res) => {
-  const friendID = parseInt(req.body.id)
-  
+  //id should link to user in table; now it links to logged in user
+
+  const friendID = parseInt(req.body.friendID)
+  console.log(friendID)
   const friend = db.Friend.build({
     userID: req.session.userID,
-    id: friendID
+    friendID: friendID  
   })
   friend.save().then(()=> { 
     res.redirect('/user/dashboard')
   })
+})
+
+//remove friend
+router.post('/remove-friend', (req,res)=> {
+  let byeFelicia = parseInt(req.body.id)
+  
+  db.Friend.destroy(
+    {
+      where: {id: byeFelicia}
+    }
+  ).then(removedFriend => console.log(removedFriend))
+  res.redirect('/user/dashboard')
 })
 
 //TODO 
@@ -40,16 +50,8 @@ router.post('/search', (req,res) => {
   //by giftPref
 })
 
-//remove friend
-router.post('/remove-friend', (req,res)=> {
-  let byeFelicia = parseInt(req.body.id)
-  
-  db.Friend.destroy(
-    {
-      where: {id: byeFelicia}
-    }
-  ).then(removedFriend => console.log(removedFriend))
-  res.redirect('/user/dashboard')
+router.get('/:id', (req,res) => {
+  res.render('friend')
 })
 
 module.exports = router

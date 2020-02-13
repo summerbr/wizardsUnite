@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       models.Friend,
       {
         as: 'friendID',
-        foreignKey: 'id'
+        foreignKey: 'friendID'
       }
     )
   };

@@ -8,25 +8,39 @@
 
 <body>
   {{> header}}
-<div class="row"><h2>Add Friend</h2>
-  <div class="ten columns">
+<h3>Find Friends</h3>
+  <table class="u-full-width">
+  <thead>
+    <tr>
+      <th><b>User</b></th>
+      <th><b>House</b></th>
+      <th><b>Profession</b></th>
+      <th><b>Location</b></th>
+      <th><b>Gift Preferences</b></th>
+    </tr>
+  </thead>
 {{#all}}
-  <ul>
-    <li>{{username}}
-      <b>House:</b>{{house}} 
-      <b>Profession:</b>{{profession}} 
-      <b>Location:</b> {{location}}
-      <p></p>
-      <b>Gift Preferences:</b>
-      1: {{giftPref1}} 2: {{giftPref2}} 
-    </li>
-      <form method="POST" action="/friend/add-friend">
-        <input type="hidden" name="id" value={{id}} />
-      <button class="button button-primary">ADD</button>
-  </ul>
+  <tbody>
+    <tr>
+      <td>{{username}}</td>
+      <td>{{house}} </td>
+      <td>{{profession}}</td>
+      <td>{{location}}</td>
+      <td>
+        <b>1:</b> {{giftPref1}} 
+        <b>2:</b> {{giftPref2}}
+      </td>
+      <td>
+        <form method="POST" action="/friend/add-friend">
+          <input type="hidden" name="friendID" value={{id}} />
+        <button class="button button-primary">ADD</button>
+        </form>
+      </td>
+  </tr>
+   </tbody>
 {{/all}}
-  </div>
-</div>
+ 
+  </table>
 </body>
 {{> footer}}
 </html>
